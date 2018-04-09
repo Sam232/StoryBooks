@@ -1,0 +1,16 @@
+{
+  "name": "storybooks",
+  "version": "1.0.0",
+  "description": "App to share public or private stories",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samuel Kobina Fiatse",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.0.13"
+  }
+}
