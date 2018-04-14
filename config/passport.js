@@ -21,9 +21,9 @@ module.exports = (passport) => {
       new User({
         googleId: profile.id,
         firstName: profile.name.givenName,
-        lastName: profile.name.familName,
+        lastName: profile.name.familyName,
         email: profile.emails[0].value,
-        imageLink: image.url
+        imageLink: profile._json.image.url.substring(0, profile._json.images.url.indexOf("?"))
       }).save().then((user) => {
         if(user){
           return done(null, user);
@@ -32,15 +32,15 @@ module.exports = (passport) => {
       })
       .catch((err) => {
         if(err){
-          done(null, false);
+          console.log("Unable To Add User", err);
         }
       });
     })
     .catch((err) => {
       if(err){
-        done(null, false);
+        console.log("Unable To Fetch User", err);
       }
-    })
+    });
   }));
  
   passport.serializeUser((user, done) => {
@@ -48,8 +48,8 @@ module.exports = (passport) => {
   });
 
   passport.deserializeUser(({id}, done) => {
-    User.findOne(id, (err, user) => {
-      done(err, user)
+    User.findById(id, (err, user) => {
+      done(err, user);
     });
   });
 

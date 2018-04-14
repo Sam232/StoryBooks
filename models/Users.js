@@ -10,7 +10,7 @@ var UserSchema = new Schema({
     type: String,
     required: true,
   },
-  lasttName: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -20,7 +20,7 @@ var UserSchema = new Schema({
   },
   imageLink: {
     type: String,
-    required: true
+    required: false
   }
 });
 
