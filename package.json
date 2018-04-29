@@ -9,6 +9,10 @@
   },
   "author": "Samuel Kobina Fiatse",
   "license": "ISC",
+  "engine": {
+    "npm" : "5.4.2",
+    "node": "8.7.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
