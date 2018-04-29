@@ -1,6 +1,6 @@
 module.exports = {
   mongooseConnect: (mongoose) => {
-    mongoose.connect("mongodb://samuel:new_password@ds239309.mlab.com:39309/storybooks-dev").then((res) => {
+    mongoose.connect("mongodb://SamuelKobina:newPassword1@ds261929.mlab.com:61929/storybooks-production").then((res) => {
       if(res){
         console.log("Connected To Production MongoDB Database Server");
       }

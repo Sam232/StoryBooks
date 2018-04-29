@@ -1,23 +1,34 @@
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
+const {ensureAuthentication, ensureGuest} = require("../helper/auth");
+
+const {Story} = require("../models/Stories");
+
+router.get("/", ensureGuest, (req, res) => {
   res.render("index/welcome");
 });
 
-router.get("/dashboard", (req, res) => {
-  var user = res.locals.user;
-  res.render("index/dashboard", {
-    name: user.firstName+" "+user.lastName
+router.get("/dashboard", ensureAuthentication, (req, res) => {
+  var userId = res.locals.user._id;
+  Story.find({user: userId}).then((stories) => {
+    if(stories.length > 0){
+      return res.render("index/dashboard", {
+        stories
+      });
+    }
+    res.render("index/dashboard", {
+      stories: false
+    });
+  })
+  .catch((err) => {
+    if(err){
+      console.log("Unable To Fetch User\'s Stories");
+    }
   });
 });
 
-router.get("/stories/", (req, res) => {
-  res.render("index/publicStories");
+router.get("/about", (req, res) => {
+  res.render("index/about");
 });
-
-router.get("/stories/my", (req, res) => {
-  res.render("index/myStories");
-});
-
 
 module.exports = router;

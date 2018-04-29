@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col s12 m8">
+    <h5>{{title}}
+      <small>{{{editIcon userDetails._id user._id _id false}}}</small>
+    </h5>
+    <div class="card">
+      <div class="card-content">        
+        <span class="card-title">{{formatDate date "Do MMMM YYYY"}}</span>
+        <p class="story-text">{{stripTags body}}</p>
+      </div>
+    </div>
+    {{#if allowComment}}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Comment</span>
+          {{#if user}}
+            <form action="/stories/add/comment/{{_id}}" method="post">
+              <div class="input-field">
+                <label for="comment"> Comment Below</label>
+                <textarea name="userComment" cols="30" rows="10" class="materialize-textarea"></textarea>
+              </div>
+              <div class="input-field">
+                <button type="submit" class="btn red darken-2">Comment</button>
+              </div>
+            </form>
+            {{else}}
+            <p>Please <a href="/auth/google">login</a> to leave a comment</p>
+          {{/if}}
+        </div>
+      </div>
+      {{#if comments}}  
+        {{#each comments}}
+          <div class="card">
+            <div class="card-content">
+              <h5>{{commentBody}}</h5>
+              <div class="chip">
+                <img src="{{commentUser.imageLink}}" alt="UserImage">
+                <a href="/stories/user/{{commentUser._id}}">{{commentUser.firstName}} {{commentUser.lastName}}</a>
+                <br>
+                <small>Posted: {{formatDate commentDate "Do MMMM YYYY"}}</small>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        {{else}}
+            <p>No comments yet</p>
+      {{/if}}
+      {{else}}
+        <p>Comments Not Allowed </p>
+    {{/if}}
+  </div>
+  <div class="col s12 m4">
+    <div class="card center">
+      <div class="card-content">
+        <p>Author - {{userDetails.firstName}} {{userDetails.lastName}}</p>
+        <img class="circle responsive-img" src="{{userDetails.imageLink}}" alt="">
+      </div>
+      <div class="card-action">
+        <a href="/stories/user/{{userDetails._id}}">More From {{userDetails.firstName}}</a>
+      </div>
+    </div>
+  </div>
+</div>
