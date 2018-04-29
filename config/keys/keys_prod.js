@@ -1,5 +1,5 @@
 module.exports = {
-  googleClientID: process.env.googleClientID,
-  googleClientSecret: process.env.googleClientSecret,
-  mongoDBURI: process.env.mongoDBURI
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  mongoDBURI: process.env.MONGODB_URI
 }
