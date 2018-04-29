@@ -2,16 +2,15 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
 
 //Load Keys
-const devKeys = require("./keys/keys_dev");
-const prodKeys = require("./keys/keys_prod");
+const {googleClientID, googleClientSecret} = require("./keys/keys");
 
 //Models
 const {User} = require("../models/Users");
 
 module.exports = (passport) => {
   passport.use(new GoogleStrategy({
-    clientID: devKeys.googleClientID || prodKeys.googleClientID,
-    clientSecret: devKeys.googleClientSecret || prodKeys.googleClientSecret,
+    clientID: googleClientID,
+    clientSecret: googleClientSecret,
     callbackURL: "/auth/google/callback",
     proxy: true
   }, (accessToken, refreshToken, profile, done) => {
