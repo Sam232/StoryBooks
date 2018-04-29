@@ -9,7 +9,7 @@
   },
   "author": "Samuel Kobina Fiatse",
   "license": "ISC",
-  "engine": {
+  "engines": {
     "npm" : "5.4.2",
     "node": "8.7.0"
   },
