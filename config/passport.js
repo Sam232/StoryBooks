@@ -23,7 +23,7 @@ module.exports = (passport) => {
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         email: profile.emails[0].value,
-        imageLink: profile._json.image.url.substring(0, profile._json.images.url.indexOf("?"))
+        imageLink: profile._json.image.url.substring(0, profile._json.image.url.indexOf("?"))
       }).save().then((user) => {
         if(user){
           return done(null, user);
